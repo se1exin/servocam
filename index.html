@@ -6,11 +6,14 @@
 				padding: 0;
 				width: 100vw;
 				height: 100vh;
+				font-family: Arial,Helvetica Neue,Helvetica,sans-serif; 
 			}
 			body {
+				background-color: #000;
 				background-image: url('/image');
-				background-size: cover;
+				background-size: contain;
 				background-position: center;
+				background-repeat: no-repeat;
 			}
 			#cam-img {
 				width: 100%;
@@ -22,6 +25,14 @@
 				width: 25%;
 				height: 25vh;
 				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.touch-text {
+				color: rgba(255, 255, 255, 0.25);
+				text-transform: uppercase;
+				font-weight: bold;
 			}
 			#touch-up,
 			#touch-down {
@@ -56,35 +67,45 @@
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	</head>
 	<body>
-		<div class="touch-panel" id="touch-up"></div>
-		<div class="touch-panel" id="touch-left"></div>
-		<div class="touch-panel" id="touch-right"></div>
-		<div class="touch-panel" id="touch-down"></div>
-		<div class="touch-panel" id="touch-reset"></div>
+		<div class="touch-panel" id="touch-up">
+			<span class="touch-text">Up 45&deg;</span>
+		</div>
+		<div class="touch-panel" id="touch-left">
+			<span class="touch-text">Left 45&deg;</span>
+		</div>
+		<div class="touch-panel" id="touch-right">
+			<span class="touch-text">Right 45&deg;</span>
+		</div>
+		<div class="touch-panel" id="touch-down">
+			<span class="touch-text">Down 45&deg;</span>
+		</div>
+		<div class="touch-panel" id="touch-reset">
+			<span class="touch-text">Reset</span>
+		</div>
 
 		<script>
 			document.getElementById('touch-up').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'y',
-					direction: -10
+					direction: -45
 				});
 			});
 			document.getElementById('touch-down').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'y',
-					direction: 10
+					direction: 45
 				});
 			});
 			document.getElementById('touch-left').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'x',
-					direction: 10
+					direction: 45
 				});
 			});
 			document.getElementById('touch-right').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'x',
-					direction: -10
+					direction: -45
 				});
 			});
 
