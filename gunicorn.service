@@ -1,0 +1,15 @@
+[Unit]
+Description=gunicorn daemon for /home/pi/servocam/app.py
+After=network.target
+
+[Service]
+User=pi
+Group=pi
+RuntimeDirectory=gunicorn
+WorkingDirectory=/home/pi/servocam
+ExecStart=/usr/local/bin/gunicorn --bind=unix:/tmp/gunicorn.sock --workers=2 app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target

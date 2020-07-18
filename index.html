@@ -1,0 +1,98 @@
+<html>
+	<head>
+		<style>
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100vw;
+				height: 100vh;
+			}
+			body {
+				background-image: url('/image');
+				background-size: cover;
+				background-position: center;
+			}
+			#cam-img {
+				width: 100%;
+				height: auto;
+			}
+			.touch-panel {
+				border: 1px solid rgba(255, 255, 255, 0.25);
+				position: fixed;
+				width: 25%;
+				height: 25vh;
+				cursor: pointer;
+			}
+			#touch-up,
+			#touch-down {
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			#touch-left,
+			#touch-right {
+				top: 50%;
+				transform: translateY(-50%);
+			}
+			#touch-up {
+				top: 0;
+			}
+			#touch-down {
+				bottom: 0;
+			}
+			#touch-left {
+				left: 0;
+			}
+			#touch-right {
+				right: 0;
+			}
+			#touch-reset {
+				width: 25%;
+				height: 25vh;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div class="touch-panel" id="touch-up"></div>
+		<div class="touch-panel" id="touch-left"></div>
+		<div class="touch-panel" id="touch-right"></div>
+		<div class="touch-panel" id="touch-down"></div>
+		<div class="touch-panel" id="touch-reset"></div>
+
+		<script>
+			document.getElementById('touch-up').addEventListener('click', function() {
+				axios.post('/servo', {
+					axis: 'y',
+					direction: -10
+				});
+			});
+			document.getElementById('touch-down').addEventListener('click', function() {
+				axios.post('/servo', {
+					axis: 'y',
+					direction: 10
+				});
+			});
+			document.getElementById('touch-left').addEventListener('click', function() {
+				axios.post('/servo', {
+					axis: 'x',
+					direction: 10
+				});
+			});
+			document.getElementById('touch-right').addEventListener('click', function() {
+				axios.post('/servo', {
+					axis: 'x',
+					direction: -10
+				});
+			});
+
+			document.getElementById('touch-reset').addEventListener('click', function() {
+				axios.post('/servo/reset');
+			});
+
+		</script>
+	</body>
+
+</html>
