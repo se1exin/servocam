@@ -22,7 +22,7 @@ def move_servo(axis, degrees):
     p = GPIO.PWM(servo_pin, 50)
 
     p.start(cycle)
-    time.sleep(0.5)
+    time.sleep(0.25)
     p.stop()
     GPIO.cleanup()
 

@@ -31,8 +31,11 @@ def update_position():
     if axis == "y":
         new_pos = servo_y_pos + int(direction)
 
-    if new_pos < 0 or new_pos > 180:
-        return jsonify({"success": False})
+
+    if new_pos < 0:
+        new_pos = 0
+    if new_pos > 180:
+        new_pos = 180
 
     servo_locked = True
     move_servo(axis, new_pos)

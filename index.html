@@ -1,5 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<style>
 			html, body {
 				margin: 0;
@@ -87,25 +89,25 @@
 			document.getElementById('touch-up').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'y',
-					direction: -45
+					direction: -15
 				});
 			});
 			document.getElementById('touch-down').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'y',
-					direction: 45
+					direction: 15
 				});
 			});
 			document.getElementById('touch-left').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'x',
-					direction: 45
+					direction: 15
 				});
 			});
 			document.getElementById('touch-right').addEventListener('click', function() {
 				axios.post('/servo', {
 					axis: 'x',
-					direction: -45
+					direction: -15
 				});
 			});
 
