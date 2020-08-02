@@ -24,7 +24,7 @@ A simple web interface for viewing and controlling a Raspberry Pi camera with se
 
 #### Clone repo to correct location on pi
 ```
-git clone git@github.com:se1exin/servocam.git ~/servocam
+git clone https://github.com/se1exin/servocam.git ~/servocam
 
 cd ~/servocam
 ```
@@ -41,13 +41,16 @@ sudo raspi-config
 Go to `Interfacing Options` > `Camera` > `Yes`. Exit out to save and then reboot the pi.
 
 #### Setup motion
-Edit the motion conf file to enable remote access and run on boot
+Edit the motion conf file.
 ```
 sudo nano /etc/motion/motion.conf
 ```
-Make the following changes:
+Make the following changes to improve framerate, enable remote access, and run on boot:
 
 - `daemon on`
+- `width 640`
+- `height 480`
+- `framerate 10`
 - `locate_motion_mode off`
 - `ffmpeg_output_movies off`
 - `stream_motion off`
