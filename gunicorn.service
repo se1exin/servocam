@@ -7,7 +7,7 @@ User=pi
 Group=pi
 RuntimeDirectory=gunicorn
 WorkingDirectory=/home/pi/servocam
-ExecStart=/usr/local/bin/gunicorn --bind=unix:/tmp/gunicorn.sock --workers=2 app:app
+ExecStart=/usr/local/bin/gunicorn --bind=unix:/tmp/gunicorn.sock --workers=1 app:app
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s TERM $MAINPID
 
