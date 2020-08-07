@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
 		<style>
 			html, body {
 				margin: 0;
@@ -31,16 +34,16 @@
 
 			#x-range {
 				position: absolute;
-				bottom: 20px;
-				width: 90%;
+				bottom: 8%;
+				width: 80%;
 				left: 0;
 				right: 0;
 				margin: auto;
 			}
 			#y-range {
 				position: absolute;
-				right: 20px;
-				height: 90%;
+				right: 8%;
+				height: 80%;
 				width: 20px;
 				top: 0;
 				bottom: 0;
@@ -59,9 +62,10 @@
 
 		<script>
 			document.getElementById('x-range').addEventListener('change', function(e) {
+				// Note we need to invert the Y axis value
 				axios.post('/servo', {
 					axis: 'x',
-					position: e.target.value
+					position: 180 - e.target.value
 				});
 			});
 
