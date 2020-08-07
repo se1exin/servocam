@@ -79,7 +79,7 @@ Reboot and check camera is available at `http://raspberrypi:8081` after the pi h
 ```
 # Run inside this repo/directory
 
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 ```
 
 #### Setup Gunicorn

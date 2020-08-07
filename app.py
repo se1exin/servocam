@@ -23,14 +23,16 @@ def update_position():
 
     content = request.get_json()
     axis = content["axis"]
-    direction = content["direction"]
-
     new_pos = -1
-    if axis == "x":
-        new_pos = servo_x_pos + int(direction)
-    if axis == "y":
-        new_pos = servo_y_pos + int(direction)
 
+    try:
+        direction = content["direction"]
+        if axis == "x":
+            new_pos = servo_x_pos + int(direction)
+        if axis == "y":
+            new_pos = servo_y_pos + int(direction)
+    except KeyError:
+        new_pos = int(content["position"])
 
     if new_pos < 0:
         new_pos = 0
@@ -71,4 +73,4 @@ def reset_potition():
 if __name__ == "__main__":
     move_servo("x", servo_x_pos)
     move_servo("y", servo_y_pos)
-    app.run(host="0.0.0.0", port=8080)
+    app.run(host="0.0.0.0", port=8888)
