@@ -61,7 +61,11 @@
 		<input id="y-range" type="range" orient="vertical" min="0" max="180" />
 
 		<script>
-			document.getElementById('x-range').addEventListener('change', function(e) {
+			var xRange = document.getElementById('x-range');
+			var yRange = document.getElementById('y-range');
+			var resetBtn = document.getElementById('reset-btn');
+
+			xRange.addEventListener('change', function(e) {
 				// Note we need to invert the Y axis value
 				axios.post('/servo', {
 					axis: 'x',
@@ -69,7 +73,7 @@
 				});
 			});
 
-			document.getElementById('y-range').addEventListener('change', function(e) {
+			yRange.addEventListener('change', function(e) {
 				// Note we need to invert the Y axis value
 				axios.post('/servo', {
 					axis: 'y',
@@ -77,9 +81,23 @@
 				});
 			});
 
-			document.getElementById('reset-btn').addEventListener('click', function() {
+			resetBtn.addEventListener('click', function() {
 				axios.post('/servo/reset');
 			});
+
+			function getPositions() {
+				axios.get('/servo')
+					.then(function(result) {
+						if (result.data) {
+							xRange.value = 180 - result.data.x
+							yRange.value = 180 - result.data.y
+						}
+					});
+			}
+
+			window.onload = getPositions;
+			document.onload = getPositions;
+			getPositions();
 
 		</script>
 	</body>
